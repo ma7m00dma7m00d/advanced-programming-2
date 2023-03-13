@@ -29,8 +29,8 @@ namespace Events
     {
         private int count = 0;
 
-        public EventHandler<MyCustomEventArgs> onCountIncrement;
-        public EventHandler<MyCustomEventArgs> onCountDecrement;
+        public event EventHandler<MyCustomEventArgs> onCountIncrement;
+        public event EventHandler<MyCustomEventArgs> onCountDecrement;
 
         public EventHandler onSomething;
 
@@ -43,7 +43,7 @@ namespace Events
         public void Increment()
         {
             count++;
-            if (onCountDecrement != null)
+            if (onCountIncrement != null)
             {
                 onCountIncrement(this, new MyCustomEventArgs { Count = count });
             }
@@ -66,10 +66,15 @@ namespace Events
             Events events = new Events();
             System.Console.WriteLine(events.Count);
             events.onCountIncrement += PrintIncrement;
+            events.onCountIncrement += PrintIncrement;
+            events.onCountIncrement -= null;
             events.onCountDecrement += PrintDecrement;
+
 
             events.Increment();
             events.Increment();
+            events.Decrement();
+            events.onCountDecrement -= PrintDecrement;
             events.Decrement();
         }
 
