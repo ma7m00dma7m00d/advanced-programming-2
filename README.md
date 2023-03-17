@@ -26,6 +26,8 @@ Run
   dotnet run
 ```
 
+[Learn about Collection](Collections.md)
+
 ## 🚀 About Me
 Mahmoud Mahmoud
 I am a full stack developer with over two years of experience in building web applications using C# and dotnet.
