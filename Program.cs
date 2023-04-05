@@ -36,6 +36,7 @@ namespace Delegates
             DoCalculation del = new DoCalculation((a, b) => 5);
             try
             {
+                Console.WriteLine(del.Invoke(4, 6)); 
                 dd.DynamicInvoke();
                 // Or do this
                 // dd?.DynamicInvoke();
@@ -49,14 +50,20 @@ namespace Delegates
             // ? Basic use of Delegate
             Delegate voidParameterLess = null;
             voidParameterLess =new Action( Test);
-            // Combine tow delegate to execute (Add + operation)
-            voidParameterLess = Delegate.Combine(voidParameterLess, new Action(() => { Console.WriteLine(Line); }));
+            // Combine two delegates to execute (Add + operation)
+            voidParameterLess = Delegate.Combine(new Action(() => { Test(); }), new Action(() => { Console.WriteLine(Line); }));
             var invocationList = voidParameterLess.GetInvocationList();
             Console.WriteLine(invocationList.Length);
-            // Combine tow delegate to execute (Add + operation)
-            voidParameterLess = Delegate.Remove(new Action(() => {Console.WriteLine(); }), voidParameterLess);
-            Console.WriteLine(invocationList.Length);
-            // Execute run 
+            foreach (var item in invocationList)
+            {
+                Console.WriteLine(item.GetType().Name.ToString());
+            }
+
+            // Remove the Test method from the delegate
+            voidParameterLess = Delegate.Remove(voidParameterLess, new Action(Test));
+            Console.WriteLine($"{voidParameterLess.GetInvocationList().Length} after editing");
+
+            // Execute the delegate
             voidParameterLess.DynamicInvoke();
             Console.WriteLine(Line);
 
@@ -119,7 +126,7 @@ namespace Delegates
             Console.WriteLine(sumEvenNumbers);
         }
 
-        public static void Test() => Console.WriteLine("test");
+        public static void Test() => Console.WriteLine("testtttt");
 
         public static int OddNumbersOnly(int number)
         {
