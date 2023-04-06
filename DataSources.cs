@@ -170,7 +170,6 @@ static class DataSources
                 Id = 1,
                 Name = "Alice",
                 Email = "alice@example.com",
-                Phone = "123-456-7890"
             },
             OrderItems = new List<OrderItem>
             {
@@ -223,7 +222,6 @@ static class DataSources
                 Id = 2,
                 Name = "Bob",
                 Email = "bob@example.com",
-                Phone = "987-654-3210"
             },
             OrderItems = new List<OrderItem>
             {
@@ -288,7 +286,6 @@ static class DataSources
                 Id = 3,
                 Name = "Charlie",
                 Email = "charlie@example.com",
-                Phone = "555-555-5555"
             },
             OrderItems = new List<OrderItem>
             {
